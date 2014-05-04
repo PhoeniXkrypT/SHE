@@ -6,7 +6,6 @@ lambda_value = 8
 def main():
 	sk = secretkey(lambda_value)
 	print "Secret Key\n", int(sk)
-	distribution(sk)
 	pk = public_key(sk)
 	print "Public Key Values\n", pk
 
@@ -46,7 +45,7 @@ def public_key(secret_key):
 		pubkey = [distribution(secret_key) for i in range(tau(lambda_value))]
 		pubkey_max = max(pubkey)	
 		pubkey_mod_sk = pubkey_max % secret_key
-		if (pubkey_max & 1) and (pubkey_mod_sk % 2 ==0):
+		if (pubkey_max & 1) and (pubkey_mod_sk % 2 == 0):
 			break
 	return pubkey
 
