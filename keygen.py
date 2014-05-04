@@ -4,7 +4,7 @@ bigOconstant = 2
 lambda_value = 8
 
 def main():
-	sk = secretkey(lambda_value)
+	sk = secret_key(lambda_value)
 	print "Secret Key\n", int(sk)
 	pk = public_key(sk)
 	print "Public Key Values\n", pk
@@ -18,7 +18,7 @@ def gamma(lambda_value):
 def tau(lambda_value):
 	return (gamma(lambda_value) + lambda_value)
 
-def secretkey(lambda_value):
+def secret_key(lambda_value):
 	eta_value = eta(lambda_value)
 	number_count = eta_value / 32
 	base = 2**32
