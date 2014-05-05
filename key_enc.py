@@ -13,7 +13,7 @@ def main():
 	m = numpy.random.randint(0,2)
 	print " Message = ", m
 	c = encrypt(pk, m, random_subset)
-	print "Cipher = ", c
+	print " Cipher = ", c
 
 # Function to calculate eta value from the security parameter lambda
 def eta(lambda_value):			# eta is bit length of secret key 
