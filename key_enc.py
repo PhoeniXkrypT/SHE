@@ -9,7 +9,7 @@ def main():
 	count = input("Enter number of test cases to be generated : ")
 	fails = test(count, _lambda)
 	print "Fail count : ", fails
-	print "Success rate : ", (float(count - fails)/count)*100, "%"
+	
 	
 # Function to calculate eta value from the security parameter lambda
 def eta(_lambda):			# eta is bit length of secret key 
