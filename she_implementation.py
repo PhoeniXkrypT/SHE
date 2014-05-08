@@ -45,7 +45,7 @@ def test(count, _lambda):
 
 # Function to generate a large value
 # flag = 0 if the generated numbers lower bound is 0 i.e. (0,2**N); else 1
-def number_generator(num_of_bits, flag):
+def number_generator(num_of_bits, check_msb, check_lsb):
 	number_count = num_of_bits / 32
 	base = 2**32
 	rand_num ={}
@@ -54,8 +54,9 @@ def number_generator(num_of_bits, flag):
 	else :
 		for i in range(number_count):
 			rand_num[i] = int(numpy.random.uniform(0,2**32))
-		rand_num[0] = ((rand_num[0] & ~1 ) + 1)
-		if (flag == 1) :
+		if (check_lsb == 1):
+			rand_num[0] = ((rand_num[0] & ~1 ) + 1)
+		if (check_msb == 1) :
 			rand_num[number_count-1] = ((rand_num[number_count-1] & ~2**31 ) + 2**31)
 		x=0
 	# number = x0*base**0 + x1*base**1 + x2*base**2 + x3*base**3 + ...
@@ -66,15 +67,16 @@ def number_generator(num_of_bits, flag):
 # Function to calculate the secret key which is an odd eta-bit integer
 def secret_key(_lambda):
 	eta_value = eta(_lambda)
-	secret_key = number_generator(eta_value, 1)
+	secret_key = number_generator(eta_value, 1, 1)
 	return secret_key
 	
 # Function to find the different values of public key
 def pubkey_distribution(_lambda, secret_key):
 	#q_bound = int(math.ceil(math.log((2**gamma(_lambda) / secret_key),2)))
+	#print "q"
 	#q = number_generator(q_bound, 0)
 	q = int(numpy.random.uniform(0,2**256))
-	r = (1 - 2*(numpy.random.randint(0,2))) * number_generator(_lambda, 0)
+	r = (1 - 2*(numpy.random.randint(0,2))) * number_generator(_lambda, 0, 0)
 	x = secret_key * q + r
 	return x
 	
@@ -105,7 +107,7 @@ def encrypt(_lambda, public_key, m):
 	# Sorting in descending order
 	pub_key_sorted = sorted(public_key, reverse=True)
 	rho_dash_value = rho_dash(_lambda)
-	r = (1 - 2*(numpy.random.randint(0,2))) * number_generator(rho_dash_value, 0)
+	r = (1 - 2*(numpy.random.randint(0,2))) * number_generator(rho_dash_value, 0, 0)
 	sum_x = 0
 	# the summation of xi's for i belongs to S i.e subset of {1,2,3 ... tau}
 	for i in random_subset:
