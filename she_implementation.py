@@ -44,7 +44,7 @@ def test(count, _lambda):
     return fails
 
 # Function to generate a large value
-# flag = 0 if the generated numbers lower bound is 0 i.e. (0,2**N); else 1
+# check_lsb = 1 if the number has to be odd and check msb = 1 to set the initial bit to be 1
 def number_generator(num_of_bits, check_msb, check_lsb):
 	number_count = num_of_bits / 32
 	base = 2**32
