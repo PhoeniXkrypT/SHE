@@ -72,7 +72,6 @@ def secret_key(_lambda):
 # Function to find the different values of public key
 def pubkey_distribution(_lambda, secret_key):
 	#q_bound = int(math.ceil(math.log((2**gamma(_lambda) / secret_key),2)))
-	#print "q"
 	#q = number_generator(q_bound, 0)
 	q = int(numpy.random.uniform(0,2**256))
 	r = (1 - 2*(numpy.random.randint(0,2))) * number_generator(_lambda, 0)
