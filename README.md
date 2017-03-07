@@ -1,4 +1,4 @@
-HE
+SHE
 ==
 
-Homomorphic encryption
+Python code for a Somewhat Homomorphic encryption (SHE) scheme.
